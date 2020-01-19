@@ -37,10 +37,11 @@ const CreateBlog = ({router}) => {
         success: '',
         formData: '',
         title: '',
-        hidePublishButton: false
+        hidePublishButton: false,
+        loading: false
     });
 
-    const {error, sizeError, success, formData, title, hidePublishButton} = values;
+    const {error, sizeError, success, formData, title, hidePublishButton, loading} = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -70,19 +71,25 @@ const CreateBlog = ({router}) => {
     };
 
     const publishBlog = (e) => {
+        setValues({ ...values, loading: true });
         e.preventDefault();
         // console.log('ready to publishBlog');
         createBlog(formData, token).then(data => {
             if(data.error) {
-                setValues({...values, error:data.error});
+                setValues({...values, error:data.error, loading: false });
             } else {
-                setValues({...values, title:'', error: '', success: `A new blog titled "${data.title}" is created`});
-                setBody(''); //This will also clear out our local storage because local storage is in sync with our state
-                setCategories([]);
-                setTags([]); 
-                //Load Categories and tags
-                initCategories();
-                initTags();
+                setValues({...values, 
+                loading: false,
+                title:'', 
+                error: '', 
+                success: `A new blog titled "${data.title}" is created`
+            });
+            setBody(''); //This will also clear out our local storage because local storage is in sync with our state
+            setCategories([]);
+            setTags([]); 
+            //Load Categories and tags
+            initCategories();
+            initTags();
             }
         });
     };
@@ -167,6 +174,12 @@ const CreateBlog = ({router}) => {
         </div>
     );
 
+    const showLoading = () => {
+        <div className="alert alert-info" style={{display: loading ? '' : 'none'}}>
+            Loading ...
+        </div>
+    }
+
     const createBlogForm = () => {
         return (
             <form onSubmit={publishBlog}>
@@ -201,6 +214,7 @@ const CreateBlog = ({router}) => {
                     <div className="pt-3">
                         {showError()}
                         {showSuccess()}
+                        {showLoading()}
                     </div>
                 </div>
                 <div className="col-md-4">
