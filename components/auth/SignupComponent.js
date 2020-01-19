@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { signup, isAuth, preSignup } from '../../actions/auth';
 import Router from 'next/router';
 import Link from 'next/link';
+import LoginGoogle from './LoginGoogle';
 
 const SignupComponent = () => {
   //This is our state
