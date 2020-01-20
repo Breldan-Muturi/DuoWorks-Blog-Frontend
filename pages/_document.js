@@ -1,6 +1,22 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import getConfig from 'next/config.js';
+const {publicRuntimeConfig} = getConfig();
 
 class MyDocument extends Document {
+  setGoogleTags() {
+    if(publicRuntimeConfig.PRODUCTION) {
+      return {
+        __html:`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-156522267-1');
+        `
+      }
+    }
+  }
+
   render() {
     return (
       <Html lang="en">
@@ -13,6 +29,8 @@ class MyDocument extends Document {
             />            
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
             <link rel="stylesheet" href="/static/css/styles.css" />
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156522267-1"></script>
+            <script dangerouslySetInnerHTML={this.setGoogleTags()} />
         </Head>
         <body>
           <Main />
