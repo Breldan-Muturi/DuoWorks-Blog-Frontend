@@ -55,7 +55,7 @@ const Card = ({blog}) => {
             </div>
             <div className="col-md-8">
                 <section>
-                    <div className="pb-3">
+                    <div className="pb-3 overflow-hidden">
                         {renderHTML(blog.excerpt)}
                     </div>
                     <Link href={`/blogs/${blog.slug}`}>
