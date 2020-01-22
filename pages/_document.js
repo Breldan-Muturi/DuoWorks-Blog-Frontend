@@ -11,7 +11,7 @@ class MyDocument extends Document {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
         
-          gtag('config', 'UA-156522267-1');
+          gtag('config', 'UA-156668249-1');
         `
       }
     }
@@ -29,7 +29,7 @@ class MyDocument extends Document {
             />            
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
             <link rel="stylesheet" href="/static/css/styles.css" />
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156522267-1"></script>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156668249-1"></script>
             <script dangerouslySetInnerHTML={this.setGoogleTags()} />
         </Head>
         <body>
