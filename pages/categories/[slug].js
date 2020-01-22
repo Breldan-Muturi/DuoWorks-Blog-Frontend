@@ -42,9 +42,9 @@ const Category = ({ category, blogs, query }) => {
                         <header>
                             <div className="col-md-12 pt-3">
                                 <h1 className="display-4 font-weight-bold">{category.name}</h1>
-                                {blogs.map((b,i) => (
-                                    <div key={i}>
-                                        <Card blog={b}/>
+                                {blogs.map((b, i) => (
+                                    <div>
+                                        <Card key={i} blog={b} />
                                         <hr />
                                     </div>
                                 ))}
