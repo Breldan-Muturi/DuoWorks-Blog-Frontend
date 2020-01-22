@@ -21,11 +21,13 @@ const Card = ({blog}) => {
 
     return(
         <div className="lead pb-4">
-        <header>
-            <Link href={`/blogs/${blog.slug}`}>
-                <a><h2 className="pt-3 pb-3 font-weight-bold">{blog.title}</h2></a>
-            </Link>
-        </header>
+            <header>
+                <Link href={`/blogs/${blog.slug}`}>
+                    <a>
+                        <h2 className="pt-3 pb-3 font-weight-bold">{blog.title}</h2>
+                    </a>
+                </Link>
+            </header>
         <section>
             <p className="mark ml-1 pt-2 pb-2">
                 Written by{' '}
